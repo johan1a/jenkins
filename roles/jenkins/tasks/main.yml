@@ -7,6 +7,11 @@
       group: 1000
     become: true
 
+  - name: Stop Jenkins container
+    docker_service:
+      project_src: docker
+      state: absent
+
   - name: Start Jenkins container
     docker_service:
       project_src: docker
