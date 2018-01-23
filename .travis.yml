@@ -1,0 +1,8 @@
+language: python
+services:
+    - docker
+script: docker build -t johan1a/jenkins:$TRAVIS_COMMIT .
+after_success:
+    - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+    - docker push johan1a/jenkins:$TRAVIS_COMMIT
+

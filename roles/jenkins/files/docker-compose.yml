@@ -1,7 +1,7 @@
 version: '3'
 services:
   jenkins:
-    build: .
+    image: johan1a/jenkins
     container_name: jenkins
     user: jenkins
     volumes:
