@@ -1,0 +1,6 @@
+
+  - name: Setup Jenkins environment
+    hosts: local
+    become: true
+    roles:
+      - jenkins

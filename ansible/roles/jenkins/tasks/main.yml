@@ -1,0 +1,8 @@
+
+  - name: Create Jenkins data dir
+    file:
+      path: /data/jenkins
+      state: directory
+      owner: 1000
+      group: 1000
+    become: true
