@@ -6,3 +6,8 @@
       owner: 1000
       group: 1000
     become: true
+
+  - name: Start Jenkins container
+    docker_service:
+      project_src: docker
+      state: present
