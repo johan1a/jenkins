@@ -1,7 +1,7 @@
-language: python
+language: generic
 services:
     - docker
-script: docker build -t johan1a/jenkins:$TRAVIS_COMMIT .
+script: docker build -t johan1a/jenkins:$TRAVIS_COMMIT docker
 after_success:
     - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
     - docker push johan1a/jenkins:$TRAVIS_COMMIT
