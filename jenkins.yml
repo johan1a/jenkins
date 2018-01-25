@@ -1,6 +1,7 @@
 
   - name: Setup Jenkins environment
     hosts: jenkins-node
-    become: true
+    become_method: sudo
+    gather_facts: no
     roles:
       - jenkins

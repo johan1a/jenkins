@@ -5,14 +5,21 @@
       state: directory
       owner: 1000
       group: 1000
-    become: true
+    become_method: sudo
 
-  - name: Stop Jenkins container
-    docker_service:
-      project_src: docker
-      state: absent
+  - name: Create docker-compose dir
+    file:
+      path: /usr/share/jenkins-docker/
+      state: directory
+    become_method: sudo
+
+  - name: Copy docker-compose.yml
+    copy:
+      src: docker/docker-compose.yml
+      dest: /usr/share/jenkins-docker/
 
   - name: Start Jenkins container
-    docker_service:
-      project_src: docker
-      state: present
+    command: docker-compose up
+    args:
+      chdir: /usr/share/jenkins-docker/
+
