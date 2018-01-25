@@ -6,6 +6,9 @@ RUN apt-get update \
       && rm -rf /var/lib/apt/lists/*
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 
+RUN groupadd docker
+RUN usermod -aG docker jenkins
+
 USER jenkins
 COPY plugins.txt /usr/share/jenkins/plugins.txt
 
