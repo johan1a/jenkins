@@ -23,3 +23,6 @@
     args:
       chdir: /usr/share/jenkins-docker/
 
+  - name: Copy ssh keys
+    command: docker cp  ~/.ssh jenkins:/var/jenkins_home/.ssh_host
+
