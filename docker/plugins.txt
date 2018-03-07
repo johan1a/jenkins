@@ -4,3 +4,4 @@ git:latest
 greenballs:latest
 blueocean:latest
 workflow-aggregator:latest
+job-dsl:latest

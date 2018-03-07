@@ -1,16 +1,17 @@
 version: '3'
 services:
   jenkins:
-    image: johan1a/jenkins
+    build: .
     container_name: jenkins
     user: jenkins
     volumes:
-      - /data/jenkins:/var/jenkins_home:Z
+      #      - /data/jenkins:/var/jenkins_home:Z
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /usr/bin/docker:/usr/bin/docker
-      - /home/johan/.ssh:/var/jenkins_home/.ssh_host/
+      - /home/johan/.jenkins_ssh:/var/jenkins_home/.ssh_host/
     environment:
       JENKINS_HOST_HOME: "/data/jenkins"
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
     ports:
       - "8080:8080"
       - "5000:5000"
