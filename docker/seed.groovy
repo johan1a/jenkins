@@ -5,7 +5,7 @@ DslFactory factory = this
 
 ['syncer', 'haskell-go', 'bc-backend', 'bc-frontend'].each { project ->
 
-  factory.pipelineJob("$project") {
+  factory.pipelineJob('$project') {
       triggers {
         scm('H/1 * * * *')
       }
