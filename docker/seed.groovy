@@ -2,40 +2,29 @@ import javaposse.jobdsl.dsl.DslFactory
 
 DslFactory factory = this
 
-factory.pipelineJob("syncer - Jenkinsfile") {
 
-    definition {
-        cpsScm {
-            scm {
-                git {
-                    remote {
-                        github('johan1a/syncer', 'ssh')
-                        credentials('github-user')
-                        branch('master')
-                    }
-                    scriptPath("Jenkinsfile")
-                }
-            }
+['syncer', 'haskell-go', 'bc-backend', 'bc-frontend'].each { project ->
 
-        }
-    }
-}
+  factory.pipelineJob("$project") {
+      triggers {
+        scm('H/1 * * * *')
+      }
 
-factory.pipelineJob("haskell-go") {
+      definition {
+          cpsScm {
+              scm {
+                  git {
+                      remote {
+                          github('johan1a/$project', 'ssh')
+                          credentials('github-user')
+                          branch('master')
+                      }
+                      scriptPath("Jenkinsfile")
+                  }
+              }
 
-    definition {
-        cpsScm {
-            scm {
-                git {
-                    remote {
-                        github('johan1a/haskell-go', 'ssh')
-                        credentials('github-user')
-                        branch('master')
-                    }
-                    scriptPath("Jenkinsfile")
-                }
-            }
+          }
+      }
+  }
 
-        }
-    }
 }
