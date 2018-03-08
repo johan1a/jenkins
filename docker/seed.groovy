@@ -7,7 +7,7 @@ DslFactory factory = this
 
   factory.pipelineJob("${project}") {
       triggers {
-        scm('H/1 * * * *')
+        scm('* * * * *')
       }
 
       definition {
