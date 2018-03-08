@@ -5,7 +5,7 @@ DslFactory factory = this
 
 ['syncer', 'haskell-go', 'bc-backend', 'bc-frontend'].each { project ->
 
-  factory.pipelineJob('$project') {
+  factory.pipelineJob("${project}") {
       triggers {
         scm('H/1 * * * *')
       }
@@ -15,7 +15,7 @@ DslFactory factory = this
               scm {
                   git {
                       remote {
-                          github('johan1a/$project', 'ssh')
+                          github("johan1a/${project}", 'ssh')
                           credentials('github-user')
                           branch('master')
                       }

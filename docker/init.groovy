@@ -9,6 +9,8 @@ import jenkins.model.*
 import hudson.plugins.groovy.*
 import net.sf.json.JSONObject
 import javaposse.jobdsl.dsl.DslFactory
+import jenkins.model.*
+import hudson.security.*
 
 
 def credentials = SystemCredentialsProvider.getInstance().getCredentials()
@@ -22,7 +24,16 @@ credentials.add(new BasicSSHUserPrivateKey(CredentialsScope.GLOBAL,
 SystemCredentialsProvider.getInstance().save()
 
 
-println "Creating job"
+println "Configuring maximum security..."
+println ""
+
+def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+hudsonRealm.createAccount("admin","admin")
+def instance = Jenkins.getInstance()
+instance.setSecurityRealm(hudsonRealm)
+instance.save()
+
+println "Creating jobs..."
 println ""
 
 JobManagement jobManagement = new JenkinsJobManagement(System.out, [:], new File('.'))
