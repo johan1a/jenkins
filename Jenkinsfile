@@ -14,7 +14,8 @@ node {
   }
 
   stage('Push Docker image') {
-    image.push("johan1a/jenkins:${env.BUILD_ID}")
+    image.push("${env.BUILD_ID}")
+    image.push("latest")
   }
 }
 
