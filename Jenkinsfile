@@ -10,7 +10,7 @@ node {
   def image
 
   stage('Build Docker image') {
-    image = docker.build("johan1a/jenkins:${env.BUILD_ID}")
+    image = docker.build("johan1a/jenkins:${env.BUILD_ID}", "docker")
   }
 
   stage('Push Docker image') {
